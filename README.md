@@ -13,7 +13,7 @@ and select a result by entering a number
 
 or
 
-`python3 url http://www.mangahere.co/manga/some_manga/`
+`python3 mhdl.py url http://www.mangahere.co/manga/some_manga/`
 
 
 This will start downloading every chapter to the current directory. If chapter directories exist, they won't be redownloaded so be careful when interrupting downloads. Delete incomplete chapters before continuing download.
