@@ -88,7 +88,7 @@ pattern = re.escape(choice_url)+'.*?c[0-9]+'
 chapters = chapter_list.find_all(
         href=re.compile(pattern)
     )
-chapters = [c['href'] for c in chapters]
+chapters = [c['href'] for c in chapters if not c.parent.find('label', text=re.compile('Status:'))]
 prev_chapter = None
 
 for c in sorted(chapters):
