@@ -84,14 +84,15 @@ if not os.path.exists(manga):
 
 chapterlist_page = decompress(urlopen_retrier(choice_url).read())
 chapter_list = BS(chapterlist_page)
+pattern = re.escape(choice_url)+'.*?c[0-9]+'
 chapters = chapter_list.find_all(
-        href=re.compile(choice_url+'[/]?v[0-9]+/c[0-9]+')
+        href=re.compile(pattern)
     )
 chapters = [c['href'] for c in chapters]
 prev_chapter = None
 
 for c in sorted(chapters):
-    chapter_name = re.search('v[0-9]+/c[0-9]+', c).group(0).replace('/', '')
+    chapter_name = re.search('(v[0-9]+/)?c[0-9]+', c).group(0).replace('/', '')
     chapter_dir = os.path.join(manga, chapter_name)
     if not os.path.exists(chapter_dir):
         os.makedirs(chapter_dir)
